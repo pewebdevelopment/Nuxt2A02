@@ -1,3 +1,4 @@
+
 <script>
 import { h, defineComponent } from "vue";
 
@@ -29,7 +30,7 @@ export default defineComponent({
 
     // const hasSlot = this.$slots && this.$slots.default()
 
-    const hasSlot = true;
+    const hasSlot = this.$slots && this.$slots.default;
 
     const parentClass = [
       "flex",
@@ -44,22 +45,19 @@ export default defineComponent({
 
     // debugger;
 
-    console.log(this.$slots, this.$slots.default);
+    // console.log(this.$slots, this.$slots.default);
 
     return h(
       "div",
       { class: parentClass },
 
-      // hasSlot
-      this.$slots && this.$slots.default
+      hasSlot
         ? this.$slots.default.map((element) => {
             console.log(element.context.$children);
-            const x = Boolean(element && element.context.$children);
-            console.log(x);
+            // const x = Boolean(element && element.context.$children);
+            // console.log(x);
 
-            //
-
-            if (x) {
+            if (Boolean(element && element.context.$children)) {
               // return h("div", {}, "Eleme");
               return h(
                 "div",
@@ -67,13 +65,15 @@ export default defineComponent({
 
                 element.context.$children.map((child) => {
                   //   debugger;
-                  console.log("Inner Return", child);
+                  console.log("Inside if. Child:", child);
                   // h(Component, {}, () => {}) // default slot
-                  // return h(child, { class: [this.classAddon] }, () => {});
+                  // return h(child, {}, () => {});
+                  //return h(child, { class: [this.classAddon] });
+                  // return h("div", { class: [this.classAddon] }, h(child)); // vnode
                   return h(
-                    element.context.$children[0],
+                    "Button",
                     { class: [this.classAddon] },
-                    "Inner Return"
+                    "Inner Button"
                   );
                   // return h("div", { class: [this.classAddon] }, () => {});
                   // return h("div", {}, "Eleme");
@@ -82,30 +82,10 @@ export default defineComponent({
                 })
               );
             }
-
-            return h(element, { class: [this.classAddon] });
+            // return h(element, { class: [this.classAddon] });
+            return h("div", { class: [this.classAddon] }, "MyDiv");
           })
-        : // return h(element, { class: [this.classAddon] });
-
-          // if (
-          //   element &&
-          //   element.children &&
-          //   typeof element.children === "object"
-          // ) {
-          //   return h(
-          //     element,
-          //     {},
-          //     element.children.map((child) => {
-          //       return h(child, { class: [this.classAddon] });
-          //     })
-          //   );
-          // }
-
-          // return h(element, { class: [this.classAddon] });
-
-          //  return h("div", {}, "Inside HasSlot");
-
-          null
+        : null
     );
   },
 });
