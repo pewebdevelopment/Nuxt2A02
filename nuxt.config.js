@@ -6,7 +6,7 @@ export default defineNuxtConfig( {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Nuxt2A01',
+    title: 'Nuxt2 A02',
     htmlAttrs: {
       lang: 'en',
     },

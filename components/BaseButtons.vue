@@ -62,18 +62,28 @@ export default defineComponent({
             if (x) {
               // return h("div", {}, "Eleme");
               return h(
-                element,
+                "div",
                 {},
-                "UpUp"
-                // element.context.$children.map((child) => {
-                //   debugger;
-                //   console.log("Inner Return", child);
-                //   return h("div", {}, "Eleme");
 
-                //   // return h(child, { class: [this.classAddon] });
-                // })
+                element.context.$children.map((child) => {
+                  //   debugger;
+                  console.log("Inner Return", child);
+                  // h(Component, {}, () => {}) // default slot
+                  // return h(child, { class: [this.classAddon] }, () => {});
+                  return h(
+                    element.context.$children[0],
+                    { class: [this.classAddon] },
+                    "Inner Return"
+                  );
+                  // return h("div", { class: [this.classAddon] }, () => {});
+                  // return h("div", {}, "Eleme");
+
+                  //   // return h(child, { class: [this.classAddon] });
+                })
               );
             }
+
+            return h(element, { class: [this.classAddon] });
           })
         : // return h(element, { class: [this.classAddon] });
 
