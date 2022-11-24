@@ -1,0 +1,8 @@
+@import "@/assets/css/tailwind/_base.css";
+@import "@/assets/css/tailwind/_components.css";
+@import "@/assets/css/tailwind/_utilities.css";
+
+@import "@/assets/css/_checkbox-radio-switch.css";
+@import "@/assets/css/_progress.css";
+@import "@/assets/css/_scrollbars.css";
+@import "@/assets/css/_table.css";
