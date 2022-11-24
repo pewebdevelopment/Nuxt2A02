@@ -57,6 +57,8 @@ export default defineComponent({
             // const x = Boolean(element && element.context.$children);
             // console.log(x);
 
+            const childClass = true;
+
             if (Boolean(element && element.context.$children)) {
               // return h("div", {}, "Eleme");
               return h(
@@ -70,11 +72,7 @@ export default defineComponent({
                   // return h(child, {}, () => {});
                   //return h(child, { class: [this.classAddon] });
                   // return h("div", { class: [this.classAddon] }, h(child)); // vnode
-                  return h(
-                    "Button",
-                    { class: [this.classAddon] },
-                    "Inner Button"
-                  );
+                  return h("div", { class: [this.classAddon] }, "something");
                   // return h("div", { class: [this.classAddon] }, () => {});
                   // return h("div", {}, "Eleme");
 
