@@ -1,4 +1,4 @@
-# Nuxt2A01
+# Nuxt2 Attempt 02
 
 ## Build Setup
 
