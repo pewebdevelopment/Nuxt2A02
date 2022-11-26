@@ -1,9 +1,11 @@
+<script setup></script>
+
 <template>
   <a>
     <slot> </slot>
   </a>
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped></style>
+:to="item.to ?? null" :href="item.href ?? null" :target="item.target ?? null"
+:exact-active-class="activeSecondaryMenuKey ? null : asideMenuItemActiveBgStyle"
+class="flex cursor-pointer" :class="componentClass" @click="menuClick"
