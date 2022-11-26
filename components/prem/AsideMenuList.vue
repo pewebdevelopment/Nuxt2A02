@@ -1,7 +1,8 @@
 <script setup>
 import PremAsideMenuItem from "@/components/prem/AsideMenuItem.vue";
+import { onMounted } from "vue";
 
-defineProps({
+const props = defineProps({
   isDropdownList: Boolean,
   isCompact: Boolean,
   menu: {
@@ -19,6 +20,10 @@ const emit = defineEmits(["menu-click"]);
 const menuClick = (event, item) => {
   emit("menu-click", event, item);
 };
+
+onMounted(() => {
+  console.log("menu:", props.menu);
+});
 </script>
 
 <template>

@@ -1,4 +1,3 @@
-
 export const chartColors = {
   default: {
     primary: "#00D1B2",
@@ -41,7 +40,7 @@ export const sampleChartData = (points = 9) => {
   const labels = [];
 
   for (let i = 1; i <= points; i++) {
-    labels.push(0${i});
+    labels.push(`${i}`);
   }
 
   return {
@@ -56,8 +55,8 @@ export const sampleChartData = (points = 9) => {
 
 export default {
   sampleChartData,
-  chartColors
-}
+  chartColors,
+};
 
 // export const chartColors = {
 //   default: {

@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 // import { useRouter } from "vue-router";
-import VueRouter from 'vue-router';
+import VueRouter from "vue-router";
 import menuAside from "@/configs/menuAside.js";
 import menuNavBar from "@/configs/menuNavBar.js";
 import { useMainStore } from "@/store/main.js";
@@ -30,7 +30,7 @@ const styleStore = useStyleStore();
 
 const layoutStore = useLayoutStore();
 
-const router = new VueRouter;
+const router = new VueRouter();
 
 // router = Vue.use(VueRouter);
 
@@ -51,50 +51,9 @@ const menuClick = (event, item) => {
 
 <template>
   <div>
+    <PremAsideMenu :menu="menuAside" @menu-click="menuClick" />
 
-    <div :class="{
-      dark: styleStore.darkMode,
-      'overflow-hidden lg:overflow-visible': layoutStore.isAsideMobileExpanded,
-    }">
-
-      <div :class="[
-        layoutAsidePadding,
-        { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-      ]"
-        class="pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
-
-        <NavBar :menu="menuNavBar" :class="[
-          layoutAsidePadding,
-          { 'ml-60 lg:ml-0': layoutStore.isAsideMobileExpanded },
-        ]" @menu-click="menuClick">
-        
-          <NavBarItemPlain display="flex lg:hidden" @click.prevent="layoutStore.asideMobileToggle()">
-            <BaseIcon :path="
-              layoutStore.isAsideMobileExpanded
-                ? mdiBackburger
-                : mdiForwardburger
-            " size="24" />
-          </NavBarItemPlain>
-          <NavBarItemPlain display="hidden lg:flex xl:hidden" @click.prevent="layoutStore.asideLgToggle()">
-            <BaseIcon :path="layoutStore.isAsideLgActive ? mdiBackburger : mdiMenu" size="24" />
-          </NavBarItemPlain>
-          <NavBarItemPlain use-margin>
-            <FormControl placeholder="Search (ctrl+k)" ctrl-k-focus transparent borderless />
-          </NavBarItemPlain>
-        </NavBar>
-
-        <PremAsideMenu :menu="menuAside" @menu-click="menuClick" /> 
-
-        <!-- Use the Nuxt tag in Nuxt 2 Instead of the slot Tag -->
-        <Nuxt />
-
-        <FooterBar>
-          <a href="#" target="_blank" class="text-blue-600"> Photon Ecademy</a>
-        </FooterBar>
-
-
-
-      </div>
-    </div>
+    <!-- Use the Nuxt tag in Nuxt 2 Instead of the slot Tag -->
+    <Nuxt />
   </div>
-</template> 
+</template>
