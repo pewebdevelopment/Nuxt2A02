@@ -7,6 +7,7 @@ import { getButtonColor } from "@/configs/colors.js";
 import BaseIcon from "@/components/BaseIcon.vue";
 import PremAsideMenuList from "@/components/prem/AsideMenuList.vue";
 import PremUpdateMark from "@/components/prem/UpdateMark.vue";
+import AsideMenuNestedItem from "./AsideMenuNestedItem.vue";
 
 const props = defineProps({
   item: {
@@ -26,18 +27,17 @@ const emit = defineEmits(["menu-click"]);
 const styleStore = useStyleStore();
 
 const asideMenuItemInactiveStyle = computed(() =>
-  hasColor.value
-    ? ""
-    : `${styleStore.asideMenuItemInactiveStyle} dark:text-gray-300`
+  hasColor.value ? "" : `${styleStore.asideMenuItemInactiveStyle} dark:text-gray-300`
 );
 
-const asideMenuItemActiveBgStyle = computed(
-  () => `${styleStore.asideMenuItemActiveBgStyle} dark:bg-slate-700/25`
-);
+const asideMenuItemActiveBgStyle = computed(() => {
+  return `${styleStore.asideMenuItemActiveBgStyle} dark:bg-slate-700/25`;
+});
 
-const asideMenuItemActiveStyle = computed(() =>
-  hasColor.value ? "" : styleStore.asideMenuItemActiveStyle
-);
+const asideMenuItemActiveStyle = computed(() => {
+  console.log("stylestore:", stylestore);
+  hasColor.value ? "" : styleStore.asideMenuItemActiveStyle;
+});
 
 const isAsideCompact = computed(() => props.isCompact);
 
@@ -66,10 +66,7 @@ const componentClass = computed(() => {
       : `${styleStore.asideMenuItemStyle} dark:hover:bg-gray-700/50`,
   ];
 
-  if (
-    !hasColor.value &&
-    (isDropdownActive.value || isSecondaryMenuActive.value)
-  ) {
+  if (!hasColor.value && (isDropdownActive.value || isSecondaryMenuActive.value)) {
     base.push(asideMenuItemActiveBgStyle.value);
   }
 
@@ -108,14 +105,12 @@ const updateMarkPosition = computed(() => {
 <template>
   <li>
     <component
-      :is="item.to ? RouterLink : 'a'"
+      :is="item.to ? RouterLink : AsideMenuNestedIt"
       v-slot="vSlot"
       :to="item.to ?? null"
       :href="item.href ?? null"
       :target="item.target ?? null"
-      :exact-active-class="
-        activeSecondaryMenuKey ? null : asideMenuItemActiveBgStyle
-      "
+      :exact-active-class="activeSecondaryMenuKey ? null : asideMenuItemActiveBgStyle"
       class="flex cursor-pointer"
       :class="componentClass"
       @click="menuClick"
