@@ -1,4 +1,3 @@
-
 <script>
 import { h, defineComponent } from "vue";
 
@@ -67,7 +66,7 @@ export default defineComponent({
 
                 element.context.$children.map((child) => {
                   //   debugger;
-                  console.log("Inside if. Child:", child);
+                  console.log("Inside if & Child:", child);
                   // h(Component, {}, () => {}) // default slot
                   // return h(child, {}, () => {});
                   //return h(child, { class: [this.classAddon] });
