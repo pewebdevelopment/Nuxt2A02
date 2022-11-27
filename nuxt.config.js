@@ -38,21 +38,19 @@ export default defineNuxtConfig({
     // https://go.nuxtjs.dev/eslint
     // "@nuxtjs/eslint-module",
     // https://go.nuxtjs.dev/tailwindcss
-    "@nuxtjs/tailwindcss",
-
+    // "@nuxtjs/tailwindcss",
+    "@nuxt/postcss8",
     //https://go.nuxtjs.dev/pinia
     "@pinia/nuxt",
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // The following that was used in Nuxt3 isnt needed for tailwind to work as under the hood, the tailwind module is already working.
-    //  Maybe we need to either use the following or use the '@nuxtjs/tailwindcss' module
+    // Maybe we need to either use the following or use the '@nuxtjs/tailwindcss' module
     postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
       },
     },
   },
