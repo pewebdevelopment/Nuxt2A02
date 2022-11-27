@@ -1,3 +1,9 @@
+<script>
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <script setup>
 import { ref, computed, watch } from "vue";
 import { RouterLink } from "vue-router";
@@ -88,6 +94,8 @@ const subIcon = computed(() => {
 });
 
 const menuClick = (event) => {
+  console.log("menuClick:", props.item);
+
   emit("menu-click", event, props.item);
 
   if (hasDropdown.value) {
@@ -103,71 +111,7 @@ const updateMarkPosition = computed(() => {
 </script>
 
 <template>
-  <li>
-    <component
-      :item="item"
-      :is="item.to ? RouterLink : PremAsideMenuNestedItem"
-      v-slot="vSlot"
-      :to="item.to ?? null"
-      :href="item.href ?? null"
-      :target="item.target ?? null"
-      :exact-active-class="activeSecondaryMenuKey ? null : asideMenuItemActiveBgStyle"
-      class="flex cursor-pointer"
-      :class="componentClass"
-      @click="menuClick"
-      @menu-click="menuClick"
-    >
-      <BaseIcon
-        v-if="item.icon"
-        :path="item.icon"
-        class="flex-none transition-size"
-        :class="[
-          vSlot && vSlot.isExactActive
-            ? asideMenuItemActiveStyle
-            : asideMenuItemInactiveStyle,
-          { relative: item.updateMark },
-        ]"
-        :w="isCompact ? 'w-16 lg:w-20' : 'w-16'"
-        :size="18"
-      >
-        <PremUpdateMark
-          v-if="item.updateMark"
-          :color="item.updateMark"
-          :position="updateMarkPosition"
-        />
-      </BaseIcon>
-      <span
-        class="grow animate-fade-in text-ellipsis line-clamp-1"
-        :class="[
-          { 'lg:hidden': isCompact, 'pr-12': !hasSub },
-          vSlot && vSlot.isExactActive
-            ? asideMenuItemActiveStyle
-            : asideMenuItemInactiveStyle,
-        ]"
-        >{{ item.label }}</span
-      >
-
-      <BaseIcon
-        v-if="hasSub"
-        :path="subIcon"
-        class="flex-none animate-fade-in-fast"
-        :class="[
-          { 'lg:hidden': isCompact },
-          vSlot && vSlot.isExactActive
-            ? asideMenuItemActiveStyle
-            : asideMenuItemInactiveStyle,
-        ]"
-        w="w-12"
-      />
-    </component>
-    <PremAsideMenuList
-      v-if="hasDropdown"
-      :menu="item.menu"
-      :class="[
-        styleStore.asideMenuDropdownStyle,
-        isDropdownActive ? 'block dark:bg-slate-800/50' : 'hidden',
-      ]"
-      is-dropdown-list
-    />
-  </li>
+  <a @click="menuClick">
+    <slot> </slot>
+  </a>
 </template>
