@@ -69,11 +69,7 @@ export default [
     label: "Login",
     icon: mdiLock,
   },
-  {
-    to: "#",
-    label: "About",
-    icon: mdiHelpCircle,
-  },
+
   {
     // Key should be unique for each submenus object
     // It is required for open/close logic
@@ -106,5 +102,11 @@ export default [
         ],
       },
     ],
+  },
+
+  {
+    to: "#",
+    label: "About",
+    icon: mdiHelpCircle,
   },
 ];

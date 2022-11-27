@@ -94,12 +94,13 @@ const expandCollapseItem = computed(() => ({
   icon: isPrimaryMenuCompact.value
     ? mdiChevronRightCircleOutline
     : mdiChevronLeftCircleOutline,
-  color: "info",
+  color: "success",
 }));
 </script>
 
 <template>
   <div>
+    <!-- First Layer of the Sidebar Menu -->
     <PremAsideMenuLayer
       :menu="menu"
       :class="[
@@ -112,10 +113,12 @@ const expandCollapseItem = computed(() => ({
       :active-secondary-menu-key="secondaryMenuItem?.key"
       @menu-click="menuClickPrimaryMenu"
     >
+      <!-- The One that has been written on top -->
       <div class="flex-1 px-3 flex justify-center">
         <b class="font-black">One</b>
       </div>
 
+      <!-- The collapse expand button  -->
       <template #footer>
         <ul class="hidden lg:block">
           <PremAsideMenuItem
@@ -126,7 +129,7 @@ const expandCollapseItem = computed(() => ({
         </ul>
       </template>
     </PremAsideMenuLayer>
-
+    <!-- Second Layer of the Sidebar Menu -->
     <PremAsideMenuLayer
       v-if="secondaryMenuItem"
       :menu="secondaryMenuItem.menuSecondary"
@@ -146,6 +149,7 @@ const expandCollapseItem = computed(() => ({
       />
     </PremAsideMenuLayer>
 
+    <!-- Overlay Gradient Layer that covers the entire page -->
     <OverlayLayer
       :type="overlayLayerDisplayType"
       z-index="z-40"
