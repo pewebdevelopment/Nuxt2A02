@@ -62,7 +62,7 @@ const menuClickPrimaryMenu = (event, item) => {
 };
 
 const menuClickSecondaryMenu = (event, item) => {
-  console.log("menuClickSecondaryMenu ".event, item);
+  console.log("menuClickSecondaryMenu ", event, item);
   emit("menu-click", event, item);
 };
 

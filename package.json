@@ -33,7 +33,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27778503.de9e5c2",
+   
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@3.0.0-27747000.69db93e",
     "@nuxt/postcss8": "^1.1.3",
     "@nuxtjs/eslint-config": "^11.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",
