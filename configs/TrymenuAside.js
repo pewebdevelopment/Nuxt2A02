@@ -73,7 +73,7 @@ export default [
   {
     // Key should be unique for each submenus object
     // It is required for open/close logic
-    to: "#",
+
     key: "submenus-1",
     label: "Sub",
     icon: mdiMenuOpen,

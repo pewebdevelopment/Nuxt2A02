@@ -7,7 +7,6 @@ import { getButtonColor } from "@/configs/colors.js";
 import BaseIcon from "@/components/BaseIcon.vue";
 import PremAsideMenuList from "@/components/TryAside/AsideMenuList.vue";
 import PremUpdateMark from "@/components/TryAside/UpdateMark.vue";
-import AsideMenuNestedItem from "./AsideMenuNestedItem.vue";
 
 const props = defineProps({
   item: {
@@ -144,6 +143,9 @@ const updateMarkPosition = computed(() => {
         ]"
         >{{ item.label }}</span
       >
+
+      <span>{{ item.label }}</span>
+
       <BaseIcon
         v-if="hasSub"
         :path="subIcon"
