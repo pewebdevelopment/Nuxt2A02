@@ -5,8 +5,8 @@ import { mdiMinus, mdiPlus, mdiChevronRight } from "@mdi/js";
 import { useStyleStore } from "@/store/style.js";
 import { getButtonColor } from "@/configs/colors.js";
 import BaseIcon from "@/components/BaseIcon.vue";
-import PremAsideMenuList from "@/components/prem/AsideMenuList.vue";
-import PremUpdateMark from "~/components/TryAside/UpdateMark.vue";
+import PremAsideMenuList from "@/components/TryAside/AsideMenuList.vue";
+import PremUpdateMark from "@/components/TryAside/UpdateMark.vue";
 import AsideMenuNestedItem from "./AsideMenuNestedItem.vue";
 
 const props = defineProps({
@@ -105,7 +105,7 @@ const updateMarkPosition = computed(() => {
 <template>
   <li>
     <component
-      :is="item.to ? RouterLink : AsideMenuNestedItem"
+      :is="item.to ? RouterLink : 'a'"
       v-slot="vSlot"
       :to="item.to ?? null"
       :href="item.href ?? null"
