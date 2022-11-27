@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
 // import { useRouter } from "vue-router";
-import  VueRouter  from "vue-router";
+// import  VueRouter  from "vue-router";
 import {
   mdiClose,
   mdiChevronRightCircleOutline,
@@ -24,7 +24,7 @@ const emit = defineEmits(["menu-click"]);
 
 const layoutStore = useLayoutStore();
 
-const isPrimaryMenuCompact = ref(true);
+const isPrimaryMenuCompact = ref(false);
 
 const secondaryMenuItem = ref(null);
 
@@ -41,6 +41,7 @@ const overlayLayerDisplayType = computed(() => {
 });
 
 const closeSecondaryMenu = () => {
+  console.log('closeSecondaryMenu');
   secondaryMenuItem.value = null;
 };
 
@@ -61,6 +62,7 @@ const menuClickPrimaryMenu = (event, item) => {
 };
 
 const menuClickSecondaryMenu = (event, item) => {
+  console.log('menuClickSecondaryMenu '. event, item);
   emit("menu-click", event, item);
 };
 
@@ -88,11 +90,12 @@ onMounted(() => {
 
 
 
-const router = new VueRouter;
+// const router = new VueRouter;
 
-router.afterEach(() => {
-  isPrimaryMenuCompact.value = true;
-});
+// router.afterEach(() => {
+//   console.log('hey router here');
+//   isPrimaryMenuCompact.value = true;
+// });
 
 const expandCollapseItem = computed(() => ({
   label: isPrimaryMenuCompact.value ? "Exapand" : "Collapse",
