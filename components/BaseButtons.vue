@@ -23,11 +23,6 @@ export default defineComponent({
     return {};
   },
   render() {
-    // console.log(this.slots());
-
-    // console.log(this.$slots.default);
-
-    // const hasSlot = this.$slots && this.$slots.default()
 
     const hasSlot = this.$slots && this.$slots.default;
 
@@ -42,9 +37,6 @@ export default defineComponent({
       parentClass.push(this.mb);
     }
 
-    // debugger;
-
-    // console.log(this.$slots, this.$slots.default);
 
     return h(
       "div",
@@ -53,7 +45,6 @@ export default defineComponent({
       hasSlot
         ? this.$slots.default.map((element) => {
             console.log(element.context.$children);
-            // const x = Boolean(element && element.context.$children);
             // console.log(x);
 
             const childClass = true;
