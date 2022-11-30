@@ -72,9 +72,7 @@ const computedType = computed(() => {
   return null;
 });
 
-const labelClass = computed(() =>
-  props.small && props.icon ? "px-1" : "px-2"
-);
+const labelClass = computed(() => (props.small && props.icon ? "px-1" : "px-2"));
 
 const componentClass = computed(() => {
   const base = [
@@ -109,7 +107,13 @@ const componentClass = computed(() => {
 </script>
 
 <template>
-  <component
+  <!-- <button> -->
+  <span></span>
+  <!-- My Base Button -->
+  <!-- <BaseIcon v-if="icon" :path="icon" :size="iconSize" />
+    <span v-if="label" :class="labelClass">{{ label }}</span> -->
+  <!-- </button> -->
+  <!-- <component
     :is="is"
     :class="componentClass"
     :href="href"
@@ -120,7 +124,7 @@ const componentClass = computed(() => {
   >
     <BaseIcon v-if="icon" :path="icon" :size="iconSize" />
     <span v-if="label" :class="labelClass">{{ label }}</span>
-  </component>
+  </component> -->
 
   <!-- <div>
     

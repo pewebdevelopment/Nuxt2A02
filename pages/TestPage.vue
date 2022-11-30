@@ -44,31 +44,21 @@ const notificationsOutline = computed(
 
 const buttonSettingsModel = ref([]);
 
-const buttonsOutline = computed(
-  () => buttonSettingsModel.value.includes("outline") > -1
-);
+const buttonsOutline = computed(() => buttonSettingsModel.value.includes("outline") > -1);
 
-const buttonsSmall = computed(
-  () => buttonSettingsModel.value.includes("small") > -1
-);
+const buttonsSmall = computed(() => buttonSettingsModel.value.includes("small") > -1);
 
 const buttonsDisabled = computed(
   () => buttonSettingsModel.value.includes("disabled") > -1
 );
 
-const buttonsRounded = computed(
-  () => buttonSettingsModel.value.includes("rounded") > -1
-);
+const buttonsRounded = computed(() => buttonSettingsModel.value.includes("rounded") > -1);
 
 const pillsSettingsModel = ref(["icon"]);
 
-const pillsOutline = computed(
-  () => pillsSettingsModel.value.includes("outline") > -1
-);
+const pillsOutline = computed(() => pillsSettingsModel.value.includes("outline") > -1);
 
-const pillsSmall = computed(
-  () => pillsSettingsModel.value.includes("small") > -1
-);
+const pillsSmall = computed(() => pillsSettingsModel.value.includes("small") > -1);
 
 const pillsIcon = computed(() =>
   pillsSettingsModel.value.includes("icon") > -1 ? mdiTrendingUp : null
@@ -79,23 +69,17 @@ const styleStore = useStyleStore();
 
 <template>
   <div>
-    <NuxtLayout name="zen">
-      <SectionTitle>Buttons</SectionTitle>
-
-      <SectionMain>
-        <CardBox>
-          <BaseButtons>
-            <BaseButton
-              color="lightDark"
-              label="Button"
-              :small="buttonsSmall"
-              :outline="buttonsOutline"
-              :disabled="buttonsDisabled"
-              :rounded-full="buttonsRounded"
-            />
-          </BaseButtons>
-        </CardBox>
-      </SectionMain>
-    </NuxtLayout>
+    <BaseButtons>
+      <template>
+        <BaseButton
+          color="lightDark"
+          label="Button"
+          :small="buttonsSmall"
+          :outline="buttonsOutline"
+          :disabled="buttonsDisabled"
+          :rounded-full="buttonsRounded"
+        ></BaseButton>
+      </template>
+    </BaseButtons>
   </div>
 </template>

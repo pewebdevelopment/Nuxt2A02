@@ -1,7 +1,9 @@
 <script>
-import { h, defineComponent } from "vue";
+// import { log } from "console";
+import { h } from "vue";
+import Index3Component from '~/components/index3Component.vue';
 
-export default defineComponent({
+export default {
   name: "BaseButtons",
   props: {
     noWrap: Boolean,
@@ -19,71 +21,185 @@ export default defineComponent({
     },
   },
 
-  data() {
-    return {};
-  },
-  render() {
-    // console.log(this.slots());
+  setup(props, { slots }) {
 
-    // console.log(this.$slots.default);
+    console.log(slots.default());
 
-    // const hasSlot = this.$slots && this.$slots.default()
+    const hasSlot = slots && slots.default();
 
-    const hasSlot = this.$slots && this.$slots.default;
+    console.log(Boolean(hasSlot));
 
     const parentClass = [
       "flex",
       "items-center",
-      this.type,
-      this.noWrap ? "flex-nowrap" : "flex-wrap",
+      props.type,
+      props.noWrap ? "flex-nowrap" : "flex-wrap",
     ];
-
-    if (this.mb) {
-      parentClass.push(this.mb);
+    if (props.mb) {
+      parentClass.push(props.mb);
     }
+    return () => h(
+      "div",
+      { class: parentClass },
+      Boolean(hasSlot)
+        ? slots.default().filter(el => el.tag).map((element) => {
+          if (
+            element &&
+            element.children &&
+            typeof element.children === "object"
+          ) {
 
-    // debugger;
+            console.log(element.children);
+            return h("div", {}, "hahaha");
+            // h(Component, {}, () => {}) // default slot 
 
-    // console.log(this.$slots, this.$slots.default);
+            // h(Component, {}, () => {}) 
 
+            // return h(
+            //   element.tag,
+            //   {},
+            //   element.children.map((child) => {
+            //     return h(child.tag ? child.tag : "div", { class: [props.classAddon] }, child.text);
+            //   })
+            // );
+          } else if (element && element.data) {
+
+            console.log("Element:", element);
+            return h(Index3Component, {}, () => { })
+
+          } else {
+
+            return h("div", {}, "Elsy");
+          }
+
+
+          // return h(element, { class: [props.classAddon] }, []);
+        })
+        : null
+    )
+
+  }
+
+
+
+};
+</script>
+
+  render() {
+    
+   
+
+    debugger;
     return h(
       "div",
       { class: parentClass },
-
       hasSlot
         ? this.$slots.default.map((element) => {
-            console.log(element.context.$children);
-            // const x = Boolean(element && element.context.$children);
-            // console.log(x);
-
-            const childClass = true;
-
-            if (Boolean(element && element.context.$children)) {
-              // return h("div", {}, "Eleme");
+            if (
+              element &&
+              element.children &&
+              typeof element.children === "object"
+            ) {
               return h(
-                "div",
+                element,
                 {},
-
-                element.context.$children.map((child) => {
-                  //   debugger;
-                  console.log("Inside if & Child:", child);
-                  // h(Component, {}, () => {}) // default slot
-                  // return h(child, {}, () => {});
-                  //return h(child, { class: [this.classAddon] });
-                  // return h("div", { class: [this.classAddon] }, h(child)); // vnode
-                  return h("div", { class: [this.classAddon] }, "something");
-                  // return h("div", { class: [this.classAddon] }, () => {});
-                  // return h("div", {}, "Eleme");
-
-                  //   // return h(child, { class: [this.classAddon] });
+                element.children.map((child) => {
+                  return h(child, { class: [this.classAddon] });
                 })
               );
             }
-            // return h(element, { class: [this.classAddon] });
-            return h("div", { class: [this.classAddon] }, "MyDiv");
+            return h(element, { class: [this.classAddon] });
           })
         : null
     );
   },
-});
-</script>
+
+// < script > 
+// import { h, defineComponent } from "vue";
+
+// export default defineComponent({
+//   name: "BaseButtons",
+//   props: {
+//     noWrap: Boolean,
+//     type: {
+//       type: String,
+//       default: "justify-start",
+//     },
+//     classAddon: {
+//       type: String,
+//       default: "mr-3 last:mr-0 mb-3",
+//     },
+//     mb: {
+//       type: String,
+//       default: "-mb-3",
+//     },
+//   },
+
+//   data() {
+//     return {};
+//   },
+//   render() {
+//     // console.log(this.slots());
+
+//     // console.log(this.$slots.default);
+
+//     // const hasSlot = this.$slots && this.$slots.default()
+
+//     const hasSlot = this.$slots && this.$slots.default;
+
+//     const parentClass = [
+//       "flex",
+//       "items-center",
+//       this.type,
+//       this.noWrap ? "flex-nowrap" : "flex-wrap",
+//     ];
+
+//     if (this.mb) {
+//       parentClass.push(this.mb);
+//     }
+
+//     // debugger;
+
+//     // console.log(this.$slots, this.$slots.default);
+
+//     return h(
+//       "div",
+//       { class: parentClass },
+
+//       hasSlot
+//         ? this.$slots.default.map((element) => {
+//             console.log(element.context.$children);
+//             // const x = Boolean(element && element.context.$children);
+//             // console.log(x);
+
+//             const childClass = true;
+
+//             if (Boolean(element && element.context.$children)) {
+//               // return h("div", {}, "Eleme");
+//               return h(
+//                 "div",
+//                 {},
+
+//                 element.context.$children.map((child) => {
+//                   //   debugger;
+//                   console.log("Inside if & Child:", child);
+//                   // h(Component, {}, () => {}) // default slot
+//                   // return h(child, {}, () => {});
+//                   //return h(child, { class: [this.classAddon] });
+//                   // return h("div", { class: [this.classAddon] }, h(child)); // vnode
+//                   return h("div", { class: [this.classAddon] }, "something");
+//                   // return h("div", { class: [this.classAddon] }, () => {});
+//                   // return h("div", {}, "Eleme");
+
+//                   //   // return h(child, { class: [this.classAddon] });
+//                 })
+//               );
+//             }
+//             // return h(element, { class: [this.classAddon] });
+//             return h("div", { class: [this.classAddon] }, "MyDiv");
+//           })
+//         : null
+//     );
+//   },
+// });
+// </>
