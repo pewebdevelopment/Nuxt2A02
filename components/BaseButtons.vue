@@ -38,56 +38,10 @@ export default {
     if (props.mb) {
       parentClass.push(props.mb);
     }
-    return () => h(
-      "div",
-      { class: parentClass },
-      Boolean(hasSlot)
-        ? slots.default().filter(el => el.tag).map((element) => {
-          if (
-            element &&
-            element.children &&
-            typeof element.children === "object"
-          ) {
 
-            console.log(element.children);
-            return h("div", {}, "hahaha");
-            // h(Component, {}, () => {}) // default slot 
+    // debugger;
 
-            // h(Component, {}, () => {}) 
-
-            // return h(
-            //   element.tag,
-            //   {},
-            //   element.children.map((child) => {
-            //     return h(child.tag ? child.tag : "div", { class: [props.classAddon] }, child.text);
-            //   })
-            // );
-          } else if (element && element.data) {
-
-            console.log("Element:", element);
-            return h(Index3Component, {}, () => { })
-
-          } else {
-
-            return h("div", {}, "Elsy");
-          }
-
-
-          // return h(element, { class: [props.classAddon] }, []);
-        })
-        : null
-    )
-
-  }
-
-
-
-};
-</script>
-
-  render() {
-    
-   
+    // console.log(this.$slots, this.$slots.default);
 
     debugger;
     return h(
@@ -95,11 +49,14 @@ export default {
       { class: parentClass },
       hasSlot
         ? this.$slots.default.map((element) => {
-            if (
-              element &&
-              element.children &&
-              typeof element.children === "object"
-            ) {
+            console.log(element.context.$children);
+            // const x = Boolean(element && element.context.$children);
+            // console.log(x);
+
+            const childClass = true;
+
+            if (Boolean(element && element.context.$children)) {
+              // return h("div", {}, "Eleme");
               return h(
                 element,
                 {},
